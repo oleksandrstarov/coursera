@@ -1,66 +1,76 @@
+
 console.log('started');
 var currentLine;
+var digitArray = [];
+var symbolsArray = ['mult', 'divide', 'plus', 'minus', 'equals'];
+var argumentOne = null;
+var operationSymbol = null;
+var newOperation = null;
 
 window.onload = function(){
 	currentLine = document.getElementById('text');
-
-	var buttonOne = document.getElementById('1');
-	var buttonTwo = document.getElementById('2');
-	var buttonThree = document.getElementById('3');
-	var buttonFour = document.getElementById('4');
-	var buttonFive = document.getElementById('5');
-	var buttonSix = document.getElementById('6');
-	var buttonSeven = document.getElementById('7');
-	var buttonEight = document.getElementById('8');
-	var buttonNine = document.getElementById('9');
-	var buttonZero = document.getElementById('0');
-	
-	buttonOne.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonTwo.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonThree.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonFour.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonFive.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonSix.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonSeven.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonEight.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonNine.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
-	};
-	buttonZero.onclick = function(){
-		console.log(this.innerHTML);
-		updateLine(this.innerHTML);
+	for(var i=0; i<11; i++){
+		digitArray.push(document.getElementById(i));
+		digitArray[digitArray.length - 1].onclick = function(){
+			console.log(this.innerHTML);
+			updateLine(this.innerHTML);
+		};
 	};
 
-
-
-}
+	for(var i=0; i<symbolsArray.length; i++){
+		var symbol = document.getElementById(symbolsArray[i]);
+		console.log(symbolsArray[i]);
+		symbol.onclick = function(){
+			console.log(this.innerHTML);
+			operation(this.innerHTML);
+		}
+	}
+};
 
 function updateLine(value){
-	if(currentLine.innerHTML == '0')currentLine.innerHTML = value;
-	else currentLine.innerHTML = currentLine.innerHTML + value;
-}
+	if(value == '.' && String(currentLine.innerHTML).indexOf(value) > 0) return null;
+	if(newOperation) currentLine.innerHTML = '';
+	newOperation = false;
+ 	currentLine.innerHTML = currentLine.innerHTML + value;
+
+	if(String(currentLine.innerHTML).indexOf('0') == 0 && String(currentLine.innerHTML).indexOf('.') != 1){
+		currentLine.innerHTML = String(currentLine.innerHTML).substring(1);
+	};
+};
+
+function operation(element){
+	if(element == '=' && argumentOne != null && operationSymbol != null){
+		console.log('operationSymbol');
+		switch (operationSymbol) {
+			case '+':
+				argumentOne = Number(argumentOne) + Number(currentLine.innerHTML);
+				break;
+			case '-':
+				argumentOne = argumentOne - Number(currentLine.innerHTML);
+				break;
+			case 'x':
+				argumentOne = argumentOne * Number(currentLine.innerHTML);
+				break;
+			case '/':
+				argumentOne = argumentOne / Number(currentLine.innerHTML);
+				break;
+			case 'x':
+				argumentOne = argumentOne * Number(currentLine.innerHTML);
+				break;
+
+			default:
+				break;
+		}
+		currentLine.innerHTML = argumentOne;
+		argumentOne = null;
+		operationSymbol = null;
+		newOperation = false;
+	}
+	else{
+		console.log(element);
+		operationSymbol = element;
+		argumentOne = currentLine.innerHTML;
+		newOperation = true;
+	}
+
+};

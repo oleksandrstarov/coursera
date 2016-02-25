@@ -1,3 +1,4 @@
+
 *{
 	margin: 5px 2px 5px 2px;
 	padding: 5px;
@@ -10,7 +11,7 @@ body{
 	/*background-color: lightgreen;*/
 	margin: 0;
 	padding: 0;
-	
+
 }
 
 .digits div, .operations div{
@@ -19,7 +20,6 @@ body{
 	text-align: center;
 	border-radius: 10%;
 	display: inline-block;
-
 }
 
 .digits{
