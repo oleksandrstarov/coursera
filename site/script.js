@@ -5,6 +5,8 @@ var symbolsArray = ['mult', 'divide', 'plus', 'minus', 'equals'];
 var expression = [];
 var operations = [];
 var prevActionOperation = false;
+var argumentOne = null;
+var result = 0;
 window.onload = function(){
 	currentLine = document.getElementById('text');
 	for(var i=0; i<11; i++){
@@ -27,8 +29,6 @@ window.onload = function(){
 };
 
 function updateLine(value){
-
-
 	if(value == '.' && String(currentLine.innerHTML).indexOf(value) > 0) return null;
 	if(prevActionOperation) currentLine.innerHTML = 0;
 	if(currentLine.innerHTML == '0')currentLine.innerHTML = value;
@@ -36,10 +36,38 @@ function updateLine(value){
 	prevActionOperation = false;
 };
 
-function operation(){
+function operation(element){
 	if (!prevActionOperation) {
+
+			switch (element) {
+				case '+':
+					argumentOne = argumentOne + Number(currentLine.innerHTML);
+					break;
+				case '-':
+					argumentOne = argumentOne - Number(currentLine.innerHTML);
+					break;
+				case 'x':
+					argumentOne = argumentOne * Number(currentLine.innerHTML);
+					break;
+				case '/':
+					argumentOne = argumentOne / Number(currentLine.innerHTML);
+					break;
+				case 'x':
+					argumentOne = argumentOne * Number(currentLine.innerHTML);
+					break;
+				default:
+					argumentOne = argumentOne;
+		}
+
+			currentLine.innerHTML = argumentOne;
+
+
+
+
 		prevActionOperation = true;
-		expression.push(currentLine.innerHTML);
+
+
 	}
+
 
 };
