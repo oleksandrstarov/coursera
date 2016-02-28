@@ -18,8 +18,8 @@ div.container{
 }
 
 div.menuItem{
+  padding: 10px;
   padding-top: 30px;
-  padding-left: 10px;
   position: relative;
   background-color: lightgray;
   border: 1px solid black;
