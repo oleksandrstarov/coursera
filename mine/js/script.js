@@ -1,5 +1,5 @@
 var element = document.getElementsByClassName('cell')[0];
-var elements = 0;
+
 
 //assume that we have matrix with even amount of rows
 var elementsArray = [];
@@ -8,42 +8,33 @@ var row = 0;
 var column = 0;
 var bombs = 6;
 while(element){
-
-  var element = document.getElementsByClassName('cell')[elements];
+  var element = document.getElementsByClassName('cell')[elementsArray.length];
   if(element) {
     if(x != 0 && x != element.getBoundingClientRect().top){
       column = 0;
       row++;
     }
-    console.log(row+' ' + column + " " + element);
     var point = {
       row: row,
       column: column,
       element: element
     };
     elementsArray.push(point);
-      console.log(elementsArray.length);
     column++;
-
     x = element.getBoundingClientRect().top;
-    //console.log(x);
-    elements++;
   }
 }
-console.log(elements);
-console.log(elementsArray);
+console.log(elementsArray.length);
 
 setBombs();
 function setBombs(){
   while(bombs){
-    var index = Math.floor((Math.random() * elements));
+    var index = Math.floor((Math.random() * elementsArray.length));
     console.log(index);
-    elementsArray[index].element.innerHTML = '*';
-
-
+    if(elementsArray[index].element.innerHTML != '*') elementsArray[index].element.innerHTML = '*';
+    else continue;
     bombs--;
   }
-
 }
 
 /*element.addEventListener("click", function(evt) {
@@ -54,13 +45,3 @@ function setBombs(){
     }
     console.log(evt.buttons);
 });*/
-
-
-//set bombs
-
-var bombs = [[], []];
-for(i=1; i <=5; i++){
-  for (var j = 1; i <=5; i++) {
-
-  }
-}
