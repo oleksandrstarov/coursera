@@ -1,0 +1,17 @@
+*{
+  box-sizing: border-box;
+}
+
+.container{
+  width: 125px;
+}
+.cell{
+  width: 25px;
+  height: 25px;
+  border:1px solid black;
+  float: left;
+  background: linear-gradient(to top right, white, lightblue);
+  margin: -1px;
+  text-align: center;
+  padding: 6px;
+}
