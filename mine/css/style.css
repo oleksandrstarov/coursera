@@ -1,5 +1,6 @@
 *{
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .container{
@@ -14,4 +15,7 @@
   margin: -1px;
   text-align: center;
   padding: 6px;
+}
+div.cell[clicked]{
+  background: linear-gradient(to top right, white, lightgray);
 }
